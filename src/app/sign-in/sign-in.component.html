@@ -1,0 +1,25 @@
+<form #myform="ngForm">
+   <div class="form-group">
+                <label for="nom">NOM:</label>
+                <input type="text" class="form-control" name="name" id="nom"  ngModel required >
+    </div>
+    <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" name="email" id="email" ngModel required>
+    </div>
+    <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" id="password" ngModel #password="ngModel" required>
+    </div>
+    <div class="form-group">
+                <label for="confirmpassword">Confirm_PassWord:</label>
+                <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" ngModel #confirmpassword="ngModel" required>
+    </div>
+    <div  *ngIf="(password.value!=confirmpassword.value)&&confirmpassword.valid" class="alert alert-primary" >
+      password must be identique
+    </div>
+    <br>
+    <div class="form-group">
+      <button type="submit" [disabled]= "(password.value!=confirmpassword.value)||myform.form.invalid" class="btn btn-primary" (click)="adduser(myform)">Submit</button>
+    </div>
+</form>
